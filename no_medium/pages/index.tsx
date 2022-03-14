@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             </h2>
           </div>
           <img
-            className='hidden md:inline-flex h-32 lg:h-full' 
+            className='hidden md:inline-flex h-32 md:h-full' 
             src="https://media.giphy.com/media/l3vR16pONsV8cKkWk/giphy.gif" alt="img" />
         </div>
       </div>
@@ -29,3 +29,7 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+// export const getServerSideProps = async () => {
+//     const query = 
+// }
