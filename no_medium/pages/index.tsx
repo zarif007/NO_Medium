@@ -1,8 +1,16 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Header from '../components/Header'
+import { Movie } from '../typings';
+import { sanityClient, urlFor } from './../sanity';
 
-const Home: NextPage = () => {
+
+interface Props {
+  movies: [Movie];
+}
+
+const Home = ({ movies }: Props) => {
+    console.log(movies)
     return (
       <div className='p-5 max-w-7xl mx-auto'>
         <Head>
@@ -30,6 +38,17 @@ const Home: NextPage = () => {
 
 export default Home
 
-// export const getServerSideProps = async () => {
-//     const query = 
-// }
+export const getServerSideProps = async () => {
+    const query = `
+      *[_type == 'movie']{
+        title,
+      }
+    `
+    const movies = await sanityClient.fetch(query);
+
+    return {
+      props: {
+        movies,
+      },
+    }
+}
